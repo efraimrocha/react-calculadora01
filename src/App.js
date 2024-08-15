@@ -77,6 +77,21 @@ const App = () => {
       }
     }
 
+    // Função que realiza a operação de multiplicação.
+    const handleDivNumbers = () => {
+      // Verifica se o primeiro número ainda não foi definido.
+      if (firstNumber === '0') {
+          setFirstNumber(String(currentNumber));  // Define o primeiro número como o número atual.
+          setCurrentNumber('0');  // Reseta o número atual para '0'.
+          setOperation('/');  // Define a operação para divisão.
+      } else {
+        // Caso o primeiro número já esteja definido, realiza a subtração.
+        const sum = Number(firstNumber) / Number(currentNumber);
+        setCurrentNumber(String(sum));  // Atualiza o número atual com o resultado da subtração.
+        setOperation('');  // Reseta a operação para uma string vazia.
+      }
+    }
+
   // Função que realiza a operação quando o botão de igual é pressionado.
   const handleEquals = () => {
     // Verifica se há um primeiro número, uma operação definida e um número atual para calcular.
@@ -91,6 +106,9 @@ const App = () => {
             break;
           case 'x':
             handleMultNumbers();  // Chama a função de multiplicação se a operação for '
+            break;
+          case '/':
+            handleDivNumbers();  // Chama a função de divisão se a operação for '
             break;
           default:
             break;  // Não faz nada para outras operações.
@@ -110,7 +128,7 @@ const App = () => {
           <Button label="c" onClick={handleOnClear}/>
           <Button label="."/>
           <Button label="x" onClick={handleMultNumbers}/>
-          <Button label="/"/>
+          <Button label="/" onClick={handleDivNumbers}/>
         </Row>
 
         {/* Segunda linha de botões: números 7, 8, 9 e subtração */}
